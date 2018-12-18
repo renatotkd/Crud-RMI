@@ -33,21 +33,24 @@ public class ImplementaContatos extends UnicastRemoteObject implements Interface
     public void remover(int id) throws RemoteException {
         for (Contato contato : this.contatos) {
             if (contato.getId() == id) {
-                contatos.remove(contato);
-                
-                for (Contato contatoss : this.contatos) {
-                    System.out.println("nome" + contatoss.getNome());
-                    
+                if(contatos.size()== 1){
+                    contatos = null;
+                    System.out.println("Contato excluido");
+                } else if(contatos.size()> 1){
+                    contatos.remove(contato);
+                    System.out.println("Contato excluido");
+
+                } else {
+                    System.out.println("O contato nao foi encontrado");
                 }
-                System.out.println("Contato excluido");
+               
                 
                 
-            } else {
-                System.out.println("O contato nao foi encontrado");
-            }
+                
+            
         }
 
-    }
+    }}
     /**
      *
      * @return @throws RemoteException
